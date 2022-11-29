@@ -6,39 +6,47 @@ import java.util.Scanner;
 public class Assignment2 {
 
 	public static void main(String[] args) {
+		 
 		
+		
+		int  guess;
 		int randomNumber = (int)(Math.random()*100)+1;
-		int guessCount = 5;
-		
+		int attempts;
+		System.out.println(randomNumber);
+		attempts = 0;
 		Scanner scanner = new Scanner(System.in);
-		int guess;
-		boolean win = false;
 		
 		
+		while(true){
 		System.out.println("Pick a number between 1 and 100");
 		
+		guess = scanner.nextInt();
 		
-		while (guessCount > 0 ) {
-			guess = scanner.nextInt();
-			
-			
-		if (guess < 1 || guess > 100) {
-			System.out.println("Your guess is not between 1 and 100,"
-						+ " please try again");
-			}
-			
-		else if (guess == randomNumber) {
+		if (guess == randomNumber) {
 			System.out.println("You WIN");
-		} else if (guess > randomNumber) {
-			System.out.println("Please enter a lower number");
-		} else if (guess < randomNumber) {
-			System.out.println("Please enter a higher number");
+		
+		break;
 		}
-			guessCount--;
-	}
-		if (win == false) {
-		System.out.println("You Lose! " 
-		+ " The number to guess was " + randomNumber);
-	}scanner.close();
-}	
-	}
+		if (attempts==4) {
+			System.out.println("You lose too many guesses." + " The number is " + randomNumber );
+		break;
+		}
+		if((guess < 1)|| (guess>100)) {
+			System.out.println("Your guess was not between 1 & 100, try again.");
+		}
+		else if (guess > randomNumber ) { 
+			System.out.println("Please enter a lower number");
+			attempts++;
+		 }
+		else if ( guess < randomNumber) {
+			System.out.println("Please enter a higher number");
+			attempts++;
+		
+		}
+		}while(guess!= randomNumber);
+		
+		
+		scanner.close();
+		
+		}
+}
